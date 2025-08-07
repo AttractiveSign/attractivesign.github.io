@@ -1,48 +1,48 @@
-# 👋 Hi, ich bin Jannis!
+# 👋 Hi, I'm Jannis!
 
-Ich bin Informatikstudent mit einer Leidenschaft fürs Basteln an unterschiedlichsten Projekten – von Softwareentwicklung bis zu Hardware und Heimautomatisierung. In meiner Freizeit experimentiere ich gerne mit neuen Technologien und setze kleine bis mittelgroße Projekte um – gerade arbeite ich z.B. an einem Homeserver-Projekt. 🌐🛠️
-
----
-
-## 🔍 Über mich
-
-- 🎓 Informatikstudent im Bachelor (Angewandte Informatik) an der HAW Hamburg
-- 💡 Interesse an grundsätzlich allem, mein aktuelles rabbithole ist self-hosting und Homeserver
-- 🧪 Lerne ständig dazu – sei es durch Uni, eigene Projekte oder Community-Beiträge
-- 💬 Aktuell besonders interessiert an: 
-  - Linux / Server-Infrastruktur
-  - Netzwerktechnik
+I'm a computer science student with a passion for tinkering across diverse projects — from software development to hardware and home automation. In my free time, I enjoy exploring new technologies and building small to medium-sized projects. Currently, I'm working on a home server setup. 🌐🛠️
 
 ---
 
-## 🧰 Tech-Stack & Tools
+## 🔍 About Me
 
-- Sprachen: `Bash`, `Java`, `C`
-- Tools: `Docker`, `Git`, `Linux-Shell`
-- Server: `Ubuntu-Server`, `Docker Virtualization`, `NGINX`
+- 🎓 Bachelor's student in Applied Computer Science at HAW Hamburg
+- 💡 Curious about almost everything — my current deep dive is into self-hosting and home servers
+- 🧪 Lifelong learner — through university, personal projects, and community involvement
+- 💬 Currently focused on:
+  - Linux and server infrastructure
+  - Networking technologies
 
 ---
 
-## 🚧 Projekte (Auswahl)
+## 🧰 Tech Stack & Tools
 
-Hier folgen bald mehr Details zu meinen Projekten. Geplant ist u.a.:
+- **Languages:** `Bash`, `Java`, `C`
+- **Tools:** `Docker`, `Git`, `Linux Shell`
+- **Servers:** `Ubuntu Server`, `Docker virtualization`, `NGINX`
 
-- 🏠 **Homeserver-Projekt**  
-  Self-hosted Dienste wie Website, Nextcloud, Adguard, etc.  
-  *[Status: in Arbeit]*
+---
+
+## 🚧 Projects (Selected)
+
+More project details coming soon. Current highlights:
+
+- 🏠 **Home Server Project**  
+  Self-hosted services including website, Nextcloud, AdGuard, and more  
+  *[Status: in progress]*
 
 - 🐧 **Linux Deep-Dive**  
-Personalisiertes Arch Setup mit HyprlandWM  
-*[Staus: in Arbeit]*
+  Personalized Arch Linux setup with HyprlandWM  
+  *[Status: in progress]*
 
 ---
 
-## 📫 Kontakt & Links
+## 📫 Contact & Links
 
-- 📧 E-Mail: [jannis.naeve@haw-hamburg.de](mailto:jannis.naeve@haw-hamburg.de)
-- 🔗 *Website folgt*
-- 💬 Gerne einfach ein Issue oder eine Diskussion in einem Repo starten!
+- 📧 Email: [jannis.naeve@haw-hamburg.de](mailto:jannis.naeve@haw-hamburg.de)
+- 🔗 Website coming soon
+- 💬 Feel free to open issues or start discussions on my repositories!
 
 ---
 
-> *Diese README ist noch im Aufbau – schau gerne später wieder vorbei!*
+> *This README is a work in progress — feel free to check back later!*
