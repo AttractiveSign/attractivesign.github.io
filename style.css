@@ -1,0 +1,98 @@
+:root {
+    --background: #f5f1ea;
+    --header-bg: #c4b7a6;
+    --header-text: #3e3a36;
+    --nav-bg: #d6cfc3;
+    --nav-text: #3e3a36;
+    --nav-hover: #8f9c76;
+    --section-bg: #ece6dd;
+    --section-text: #4a453f;
+    --accent: #bfa89e;
+
+    --font-main: 'Georgia', serif;
+}
+
+/* Globales Styling */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-main);
+    background-color: var(--background);
+    color: var(--section-text);
+    line-height: 1.6;
+}
+
+/* Header */
+header {
+    background-color: var(--header-bg);
+    color: var(--header-text);
+    padding: 2rem;
+    text-align: center;
+    border-bottom: 4px solid var(--accent);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+/* Navigation */
+nav {
+    background-color: var(--nav-bg);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 1rem 0;
+    border-bottom: 2px solid var(--accent);
+}
+
+nav a {
+    color: var(--nav-text);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--nav-hover);
+}
+
+/* Hauptbereich */
+main {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+/* Sektionen */
+section {
+    background-color: var(--section-bg);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    margin-bottom: 2rem;
+    border-left: 6px solid var(--accent);
+}
+
+/* Überschriften */
+h1, h2 {
+    margin-top: 0;
+    font-weight: normal;
+}
+a {
+    color: var(--section-text);
+    text-decoration: underline;
+}
+a:hover {
+    color: var(--nav-hover);
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    section {
+        padding: 1.5rem;
+    }
+}
