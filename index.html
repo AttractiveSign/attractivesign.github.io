@@ -2,25 +2,125 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jannis Naeve | Portfolio</title>
+    <meta name="description" content="Portfolio of Jannis Naeve, CS Student at HAW Hamburg.">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<header>
-    <h1>Welcome</h1>
-</header>
-<nav>
-    <a href="./index.html">Start</a>
-</nav>
-<main>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo">Jannis.dev</div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
     <main>
-    <section id="intro">
-        <h1>Nice to see you!</h1>
-        I'm Jannis, a bachelor student at University of applied sciences Hamburg, studying
-        applied computer science. I love working by myself on all sorts of projects and deep-diving into 
-        different computer-related rabbit holes. Look around my page and explore my showcased past, current
-        and future projects
-    </section>
-</main>
+        <section id="home" class="hero">
+            <div class="container">
+                <h1>👋 Hi, I'm Jannis!</h1>
+                <p class="subtitle">CS Student & Tinkerer from Hamburg</p>
+                <p class="intro-text">
+                    Passionate about software development, hardware, and home automation. 
+                    Currently building a Connect4-Bot in Erlang.
+                </p>
+                <a href="#projects" class="btn primary-btn">View My Work</a>
+            </div>
+        </section>
+
+        <section id="about" class="section-padding">
+            <div class="container">
+                <h2>🔍 About Me</h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <p>I'm a Bachelor's student in <strong>Applied Computer Science at HAW Hamburg</strong>.</p>
+                        <ul class="about-list">
+                            <li>💡 Curious about self-hosting and home servers.</li>
+                            <li>🧪 Lifelong learner through personal projects.</li>
+                            <li>🐧 Deep diving into Linux and server infrastructure.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section-padding bg-light">
+            <div class="container">
+                <h2>🧰 Tech Stack</h2>
+                <div class="skills-wrapper">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="tags">
+                            <span>Bash</span><span>Java</span><span>C</span>
+                            <span>Python</span><span>HTML</span><span>Erlang</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools & Infrastructure</h3>
+                        <div class="tags">
+                            <span>Docker</span><span>Git</span><span>Linux Shell</span>
+                            <span>Ubuntu Server</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section-padding">
+            <div class="container">
+                <h2>🚧 Projects</h2>
+                <div class="projects-grid">
+                    
+                    <article class="project-card">
+                        <h3>Connect4-Bot</h3>
+                        <p class="project-tech">Language: Erlang</p>
+                        <p>A bot for the game Connect4 written in Erlang for a University project.</p>
+                        <span class="status-badge active">In Development</span>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>🏠 Home Server</h3>
+                        <p class="project-tech">Docker, Nextcloud, AdGuard</p>
+                        <p>Self-hosted services infrastructure running various personal tools.</p>
+                        <span class="status-badge online">Online</span>
+                    </article>
+
+                    <article class="project-card">
+                        <h3>🐧 Linux Deep-Dive</h3>
+                        <p class="project-tech">Arch Linux, HyprlandWM</p>
+                        <p>Personalized Arch Linux setup including custom dotfiles.</p>
+                        <a href="https://github.com/AttractiveSign/dotfiles" class="project-link">View on GitHub &rarr;</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section-padding bg-dark">
+            <div class="container center-text">
+                <h2>📫 Get In Touch</h2>
+                <p>Feel free to reach out for collaborations or just a chat about Linux!</p>
+                <a href="mailto:jannis.naeve@haw-hamburg.de" class="btn secondary-btn">Email Me</a>
+                <div class="social-links">
+                    <a href="https://github.com/AttractiveSign">GitHub</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Jannis Naeve. Built with HTML & CSS.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
