@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Server Project | Jannis Naeve</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="container nav-container">
+            <div class="logo"><a href="index.html">Jannis.dev</a></div>
+            <nav>
+                <ul>
+                    <li><a href="index.html#home">Home</a></li>
+                    <li><a href="index.html#projects">All Projects</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section-padding project-header">
+            <div class="container">
+                <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
+                
+                <h1>🏠 Home Server Project</h1>
+                <div class="tags">
+                    <span>Docker</span><span>Ubuntu Server</span><span>Nginx Proxy Manager</span>
+                </div>
+                <br>
+                <span class="status-badge online">Status: Online</span>
+            </div>
+        </section>
+
+        <section class="section-padding">
+            <div class="container project-content">
+                
+                <div class="image-placeholder">
+                    [Screenshot of your Dashboard / Terminal]
+                </div>
+
+                <h2>The Goal</h2>
+                <p>
+                    I wanted to regain control over my data and learn how to manage a linux server securely. 
+                    The project started with a simple Raspberry Pi and evolved into a dedicated mini-PC running 
+                    various dockerized services.
+                </p>
+
+                <h2>Technical Implementation</h2>
+                <p>The server runs on <strong>Ubuntu Server</strong>. All services are containerized using Docker Compose for easy backups and migration.</p>
+                
+                <h3>Services Running:</h3>
+                <ul class="detail-list">
+                    <li><strong>Nextcloud:</strong> For file syncing and contacts.</li>
+                    <li><strong>AdGuard Home:</strong> Network-wide ad blocking.</li>
+                    <li><strong>Home Assistant:</strong> To control smart home devices.</li>
+                    <li><strong>Nginx Proxy Manager:</strong> Handles SSL certificates and routing.</li>
+                </ul>
+
+                <h2>Challenges & Learnings</h2>
+                <p>
+                    One of the biggest challenges was configuring the reverse proxy correctly to handle 
+                    Let's Encrypt certificates automatically. I also learned a lot about firewall rules (UFW) 
+                    and securing SSH access.
+                </p>
+
+                <h3>Snippet: Docker Compose Example</h3>
+                <pre><code>services:
+  nextcloud:
+    image: nextcloud
+    ports:
+      - 8080:80
+    volumes:
+      - ./data:/var/www/html</code></pre>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Jannis Naeve. Built with HTML & CSS.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
