@@ -26,9 +26,9 @@
             <div class="container">
                 <a href="index.html#projects" class="back-link">&larr; Back to Projects</a>
                 
-                <h1>🏠 Home Server Project</h1>
+                <h1>🏠 Home Server Project | Placeholder</h1>
                 <div class="tags">
-                    <span>Docker</span><span>Ubuntu Server</span><span>Nginx Proxy Manager</span>
+                    <span>Docker</span><span>Ubuntu Server</span>
                 </div>
                 <br>
                 <span class="status-badge online">Status: Online</span>
@@ -39,14 +39,13 @@
             <div class="container project-content">
                 
                 <div class="image-placeholder">
-                    [Screenshot of your Dashboard / Terminal]
+                    [Screenshot of Dashboard / Terminal]
                 </div>
 
                 <h2>The Goal</h2>
                 <p>
                     I wanted to regain control over my data and learn how to manage a linux server securely. 
-                    The project started with a simple Raspberry Pi and evolved into a dedicated mini-PC running 
-                    various dockerized services.
+                    The project started with an old laptop which is nearing it's limit, so I am planning to upgrade soon.
                 </p>
 
                 <h2>Technical Implementation</h2>
@@ -54,17 +53,17 @@
                 
                 <h3>Services Running:</h3>
                 <ul class="detail-list">
+                    <li><strong>Flame:</strong> Dashboard for accessing all the services</li>
                     <li><strong>Nextcloud:</strong> For file syncing and contacts.</li>
                     <li><strong>AdGuard Home:</strong> Network-wide ad blocking.</li>
-                    <li><strong>Home Assistant:</strong> To control smart home devices.</li>
-                    <li><strong>Nginx Proxy Manager:</strong> Handles SSL certificates and routing.</li>
+                    <li><strong>Glances:</strong> Easy and detailes system monitorin</li>
+                    <li><strong>LibreSpeed</strong> Quick and lightweigth Internet-Speedtesting</li>
+                    <li><strong>Ollama and OpenWebUI:</strong> Local LLM</li>
                 </ul>
 
                 <h2>Challenges & Learnings</h2>
                 <p>
-                    One of the biggest challenges was configuring the reverse proxy correctly to handle 
-                    Let's Encrypt certificates automatically. I also learned a lot about firewall rules (UFW) 
-                    and securing SSH access.
+                    Coming Soon
                 </p>
 
                 <h3>Snippet: Docker Compose Example</h3>
@@ -75,6 +74,7 @@
       - 8080:80
     volumes:
       - ./data:/var/www/html</code></pre>
+                ...
 
             </div>
         </section>
@@ -82,7 +82,7 @@
 
     <footer>
         <div class="container">
-            <p>&copy; 2024 Jannis Naeve. Built with HTML & CSS.</p>
+            <p>&copy; 2025 Jannis Naeve. Built with HTML & CSS.</p>
         </div>
     </footer>
 
