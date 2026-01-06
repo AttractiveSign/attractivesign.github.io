@@ -1,4 +1,4 @@
-# 🌐 Personal Portfolio & Project Showcase
+# Personal Portfolio & Project Showcase
 
 Welcome to the repository of my personal portfolio website. This site serves as a central hub to showcase my journey as a Computer Science student at HAW Hamburg, highlighting my technical skills, infrastructure projects, and software development work.
 
@@ -6,7 +6,7 @@ Welcome to the repository of my personal portfolio website. This site serves as 
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 This project is built with simplicity and performance in mind, following a "no-framework" approach to master the fundamentals:
 
@@ -16,7 +16,7 @@ This project is built with simplicity and performance in mind, following a "no-f
 
 ---
 
-## 🏗️ Project Structure
+## Project Structure
 
 The project is organized into a main landing page and detailed project-specific pages for deep dives:
 
@@ -26,7 +26,7 @@ The project is organized into a main landing page and detailed project-specific 
 
 ---
 
-## 🚀 Key Features
+## Key Features
 
 - **Mobile Responsive:** Fully optimized for various screen sizes, from mobile phones to ultrawide monitors.
 - **Project Deep Dives:** Dedicated sub-pages for complex projects to provide technical details, code snippets, and challenges.

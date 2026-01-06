@@ -281,4 +281,16 @@ footer {
     nav ul { margin-top: 10px; }
 }
 
+.project-image-wrapper {
+    width: 100%;
+    margin-bottom: 30px; /* Abstand zum nächsten Text */
+    display: flex;
+    justify-content: center; /* Zentriert das Bild, falls es schmaler als 800px ist */
+}
 
+.project-image-wrapper img {
+    max-width: 100%;  /* Nie breiter als der Text-Container */
+    height: auto;     /* Proportionen beibehalten */
+    border-radius: 8px; /* Sieht moderner aus */
+    border: 1px solid #414868; /* Optional: Ein feiner Rahmen passend zum Tech-Look */
+}
