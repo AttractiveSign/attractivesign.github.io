@@ -122,6 +122,73 @@ services:
                 </code></pre>
                 
 
+                <h3>Shutdown Script</h3>
+                <p>I built an own bash script for safe shutdown and reboot. It cleans up old container logs, 
+                    saves the latest ones, and then stops all containers before shutting down or rebooting</p>
+                    <pre><code>
+#!/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+
+# safe-docker.sh
+# Usage: ./safe-docker.sh restart
+#        ./safe-docker.sh shutdown
+
+COMPOSE_DIR="${HOME}/homeserver"
+LOG_DIR="$COMPOSE_DIR/logs"
+
+mkdir -p "$LOG_DIR"
+
+# Container sauber stoppen und Logs sichern
+stop_containers() {
+    echo "Stopping all Docker containers safely..."
+    cd "$COMPOSE_DIR" || exit
+
+    for container in $(/usr/bin/docker compose ps -q); do
+        name=$(/usr/bin/docker inspect --format '{{.Name}}' "$container" | sed 's/^\///')
+        echo "Stopping $name..."
+        /usr/bin/docker stop "$container"    # Stoppt den Container
+        /usr/bin/docker wait "$container"    # Wartet, bis er wirklich down ist
+        echo "Saving logs for $name..."
+        /usr/bin/docker logs "$container" &> "$LOG_DIR/${name}_$(date +%F_%H-%M-%S).log"
+    done
+
+    echo "All containers stopped."
+}
+
+# Delete logs older than two weeks
+delete_logs() {
+	echo "Deleting logs older than two weeks"
+	find "$LOG_DIR" -type f -mtime +14 -exec rm -f {} \;
+	echo "Logs cleared"
+}
+
+safe_restart() {
+	delete_logs
+    	stop_containers
+    	echo "Restarting server..."
+    	/usr/bin/sudo /sbin/reboot
+}
+
+safe_shutdown() {
+	delete_logs
+    	stop_containers
+    	echo "Shutting down server..."
+    	/usr/bin/sudo /sbin/shutdown -h now
+}
+
+case "$1" in
+    restart)
+        safe_restart
+        ;;
+    shutdown)
+        safe_shutdown
+        ;;
+    *)
+        echo "Usage: $0 {restart|shutdown}"
+        exit 1
+        ;;
+esac
+                    </code></pre>
             </div>
         </section>
     </main>
