@@ -30,7 +30,7 @@
                 
                 <h1>Home Server Project | Placeholder</h1>
                 <div class="tags">
-                    <span>Docker</span><span>Ubuntu Server</span>
+                    <span>Docker</span><span>Ubuntu Server</span><span>Proxmox VE</span>
                 </div>
                 <br>
                 <span class="status-badge online">Status: Online</span>
@@ -45,150 +45,53 @@
                 <h2>The Goal</h2>
                 <p>
                     I wanted to regain control over my data and learn how to manage a linux server securely. 
-                    The project started with an old laptop which is nearing it's limit, so I am planning to upgrade soon.
+                    The project started with an old laptop running Ubuntu Server and docker compose.
+                    I have recently switched over to Proxmox VE as the next step in my learning journey to improve
+                    scalability and make the most out of my limited hardware.
                 </p>
 
                 <h2>Technical Implementation</h2>
-                <p>The server runs on <strong>Ubuntu Server</strong>. All services are containerized using Docker Compose for easy backups and migration.</p>
+                <p>The server runs on <strong>Proxmox VE v.9.1.4</strong>. I am currently running 4 LXC-Containers, one of them running docker compose for easy 
+                deployment of small services (like Homarr)</p>
                 
                 <h3>Services Running:</h3>
                 <ul class="detail-list">
-                    <li><strong>Flame:</strong> Dashboard for accessing all the services</li>
-                    <li><strong>Nextcloud:</strong> For file syncing and contacts.</li>
-                    <li><strong>AdGuard Home:</strong> Network-wide ad blocking.</li>
-                    <li><strong>Glances:</strong> Easy and detailed system monitorin</li>
-                    <li><strong>LibreSpeed</strong> Quick and lightweigth Internet-Speedtesting</li>
-                    <li><strong>Ollama and OpenWebUI:</strong> Local LLM</li>
+                    <li><strong>Tailscale-Gateway:</strong> Advertising subnet routes to devices connected to my tailscale net allowing me to access local devices from anywhere in the world.</li>
+                    <li><strong>Nextcloud:</strong> Strong and feature-rich cloud solution for synchronization across devices.</li>
+                    <li><strong>AdGuard Home:</strong> Network-wide ad and tracker blocking.</li>
+                    <li><strong>Homarr:</strong> Highly customizable Dashboard with system diagnostics and bookmarks for all the services.</li>
                 </ul>
 
                 <h2>Challenges & Learnings</h2>
+                <h3>Installing Proxmox</h3>
                 <p>
-                    Coming Soon
+                    The first challenges arose during the very first step of migrating from Ubuntu Server do Proxmox VE: Apparently, the Proxmox Installer doesn't like Ventoy.
+                    Or any of my USB Sticks for that matter. I had to restart the Installation process several times, because the Installer couldn't find the proper installation files.
+                    This allowed me, or rather forced me, to educate myself about iso images and installation drives. In the end it somehow worked out, even though I can't exactly say what was different
+                    about the tenth try.
                 </p>
 
-                <h3>Snippet: Docker Compose</h3>
-                <pre><code>
-volumes:
-  nextcloud:
-  db:
-  netdataconfig:
-  netdatalib:
-  netdatacache:
-  redis:
-  ollama_data:
-  open-webui_data:
+                <h3>Setting up a Tailscale Gateway</h3>
+                <p>
+                    Configuring the Tailscale Gateway was the first and most important service I was planning to run. Understanding how to 
+                    advertise subnet routes so I can reach my Proxmox GUI and other LXCs securely from university, the library, literally anywhere
+                    without opening ports on my router (which I am not able to do living in a student dormitory). Later, I also used that to set up Wake-On-Lan on 
+                    my PC, as I sometimes needed access to local files I forgot to sync with Nextcloud or push to GitHub.
+                </p>
 
-services:
+                <h3>Dealing with Power Saving: My fight against the kernel</h3>
+                <p>
+                    After I completed the initial setup and moved the Laptop Server to its final location, my biggest challenge yet arose: For some reason, the 
+                    network interface turned itself off and I couldn't reach anything from my PC anymore. Since the Laptops screen is broken and therefore really hard to use, that needed to be fixed ASAP.
+                    So I researched Network Interfaces, USB-Suspension Settings, and common solutions to that. In the end, I was able to solve the problem by changing a few kernel and grub parameters
+                    disabling USB-Suspension and I also wrote a small bash script, which is executed via cronjob every 2 minutes and is supposed to check the network connection, resetting and reactivating
+                    the Network Interface if necessary. The logs tell me that script hasn't ever fully run, so apparently, the changed kernel parameters work.
+                </p>
 
-  flame:
-    image: pawelmalak/flame
-    container_name: flame
-    ports:
-      - "5005:5005"
-    volumes:
-      - ./flame:/app/data
-    restart: always
-
-  db:
-    image: mariadb:10.6
-    container_name: mariadb
-    restart: always
-    command: --transaction-isolation=READ-COMMITTED --log-bin=binlog --binlog-format=ROW
-    volumes:
-      - db:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=
-
-  nextcloud:
-    build:
-      context: ./Dockerfiles
-      dockerfile: Dockerfile.nextcloud
-    container_name: nextcloud
-    restart: always
-    ports:
-      - 8080:80
-    links:
-      - db
-    volumes:
-      - nextcloud:/var/www/html
-    environment:
-      - MYSQL_PASSWORD=
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=
-      - MYSQL_HOST=
-      - PHP_MEMORY_LIMIT=1536M
-
-  ...
-                </code></pre>
-                
-
-                <h3>Shutdown Script</h3>
-                <p>I built an own bash script for safe shutdown and reboot. It cleans up old container logs, 
-                    saves the latest ones, and then stops all containers before shutting down or rebooting</p>
-                    <pre><code>
-#!/bin/bash
-PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
-
-# safe-docker.sh
-# Usage: ./safe-docker.sh restart
-#        ./safe-docker.sh shutdown
-
-COMPOSE_DIR="${HOME}/homeserver"
-LOG_DIR="$COMPOSE_DIR/logs"
-
-mkdir -p "$LOG_DIR"
-
-# Container sauber stoppen und Logs sichern
-stop_containers() {
-    echo "Stopping all Docker containers safely..."
-    cd "$COMPOSE_DIR" || exit
-
-    for container in $(/usr/bin/docker compose ps -q); do
-        name=$(/usr/bin/docker inspect --format '{{.Name}}' "$container" | sed 's/^\///')
-        echo "Stopping $name..."
-        /usr/bin/docker stop "$container"    # Stoppt den Container
-        /usr/bin/docker wait "$container"    # Wartet, bis er wirklich down ist
-        echo "Saving logs for $name..."
-        /usr/bin/docker logs "$container" &> "$LOG_DIR/${name}_$(date +%F_%H-%M-%S).log"
-    done
-
-    echo "All containers stopped."
-}
-
-# Delete logs older than two weeks
-delete_logs() {
-	echo "Deleting logs older than two weeks"
-	find "$LOG_DIR" -type f -mtime +14 -exec rm -f {} \;
-	echo "Logs cleared"
-}
-
-safe_restart() {
-	delete_logs
-    	stop_containers
-    	echo "Restarting server..."
-    	/usr/bin/sudo /sbin/reboot
-}
-
-safe_shutdown() {
-	delete_logs
-    	stop_containers
-    	echo "Shutting down server..."
-    	/usr/bin/sudo /sbin/shutdown -h now
-}
-
-case "$1" in
-    restart)
-        safe_restart
-        ;;
-    shutdown)
-        safe_shutdown
-        ;;
-    *)
-        echo "Usage: $0 {restart|shutdown}"
-        exit 1
-        ;;
-esac
-                    </code></pre>
+                <h3>Helper Scripts</h3>
+                <p>
+                    The other services, Nextcloud, AdGuard Home, and Docker, I set up using community helper-scripts, automating the repetitive container configuration.
+                </p>
             </div>
         </section>
     </main>
